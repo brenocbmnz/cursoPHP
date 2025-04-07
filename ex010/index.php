@@ -18,9 +18,9 @@
         <form action="<?php echo $_SERVER['PHP_SELF']?>"
         method="get">
         <label for="v1">Dividendo</label>
-        <input type="number" name="v1" id="v1" value="<?=$valor1?>" required>
+        <input type="number" name="v1" id="v1" min="0" value="<?=$valor1?>" required>
         <label for="v2">Divisor</label>
-        <input type="number" name="v2" id="v2" value="<?=$valor2?>" required>
+        <input type="number" name="v2" id="v2" min="1" value="<?=$valor2?>" required>
         <input type="submit" value="Dividir">
     </main>
 
@@ -28,23 +28,20 @@
         <h2>Resultado</h2>
         <div class="conta">
             <?php
-            $div = $valor1 / $valor2;
+            $div = intdiv($valor1, $valor2);
             $rest = $valor1 % $valor2;
             ?>
 
-            <p class="valores">
-                <?php 
-                echo "<span>$valor1</span>";
-                echo "<span>$valor2</span>";
-                ?>
-            </p>
+            <table class="divisao">
+            <tr>
+                <td><?=$valor1?></td>
+                <td><?=$valor2?></td>
+                </tr>
 
-            <p class="resultado">
-                <?php 
-                echo "<span>$rest</span>";
-                echo "<span>$div</span>";
-                ?>
-            </p>
+                <tr>
+                <td><?=$rest?></td>
+                <td><?=$div?></td>
+                </tr>
         </div>
 </body>
 </html>
